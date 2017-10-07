@@ -1,0 +1,16 @@
+#!/bin/bash
+
+tag() {
+  while read line; do
+	if [[ $line = *[![:space:]]* ]]; then
+    	echo "$1: $line"
+    fi
+  done
+}
+
+tsc -w -p src/Lib    | tag "Lib   " &
+tsc -w -p src/Tetris | tag "Tetris" &
+tsc -w -p src/Sudoku | tag "Sudoku" &
+tsc -w -p src/App    | tag "App   " &
+spago &
+wait

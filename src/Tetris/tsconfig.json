@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "module": "amd",
+        "strict": true,
+        "outFile": "../../build/Tetris.js",
+        "sourceMap": true,
+        "jsx": "React"
+    },
+    "include": [
+        "../../defs/**/*",
+        "../../src/Tetris/**/*",
+        "../../build/Lib.d.ts"
+    ]
+}

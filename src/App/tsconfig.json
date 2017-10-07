@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "module": "amd",
+        "strict": true,
+        "outFile": "../../build/App.js",
+        "sourceMap": true,
+        "jsx": "React"
+    },
+    "include": [
+        "../../defs/**/*",
+        "../../src/App/**/*",
+        "../../build/Lib.d.ts",
+        "../../build/Tetris.d.ts",
+        "../../build/Sudoku.d.ts"
+    ]
+}

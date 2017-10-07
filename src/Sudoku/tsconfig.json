@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+		"declaration": true,
+        "module": "amd",
+        "strict": true,
+        "outFile": "../../build/Sudoku.js",
+        "sourceMap": true,
+        "jsx": "React"
+    },
+    "include": [
+        "../../defs/**/*",
+        "../../src/Sudoku/**/*",
+        "../../build/Lib.d.ts"
+    ]
+}

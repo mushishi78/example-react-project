@@ -1,0 +1,44 @@
+/*
+ * Tetris.Component.Board
+ * 10x20 grid of colour tiles that 20x20px
+ */
+
+.aa_board {
+	width: 200px;
+	height: 400px;
+	background: #ececec;
+}
+
+.aa_tile {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+}
+
+.aa_red {
+	background: red;
+}
+
+.aa_yellow {
+	background: yellow;
+}
+
+.aa_magenta {
+	background: magenta;
+}
+
+.aa_blue {
+	background: blue;
+}
+
+.aa_cyan {
+	background: cyan;
+}
+
+.aa_green {
+	background: green;
+}
+
+.aa_orange {
+	background: orange;
+}

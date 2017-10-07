@@ -1,0 +1,19 @@
+{
+  "name": "example-react-project",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "prettier ./src/**/*.tsx --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mushishi78/example-react-project.git"
+  },
+  "author": "Max White",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-tap": "0.0.1",
+    "prettier": "1.7.4",
+    "typescript": "^2.5.3"
+  }
+}
