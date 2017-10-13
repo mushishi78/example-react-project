@@ -3,42 +3,42 @@
  * 10x20 grid of colour tiles that 20x20px
  */
 
-.aa_board {
+.ac_board {
 	width: 200px;
 	height: 400px;
 	background: #ececec;
 }
 
-.aa_tile {
+.ac_tile {
 	position: absolute;
-	width: 16px;
-	height: 16px;
+	width: 19px;
+	height: 19px;
 }
 
-.aa_red {
+.ac_red {
 	background: red;
 }
 
-.aa_yellow {
+.ac_yellow {
 	background: yellow;
 }
 
-.aa_magenta {
+.ac_magenta {
 	background: magenta;
 }
 
-.aa_blue {
+.ac_blue {
 	background: blue;
 }
 
-.aa_cyan {
+.ac_cyan {
 	background: cyan;
 }
 
-.aa_green {
+.ac_green {
 	background: green;
 }
 
-.aa_orange {
+.ac_orange {
 	background: orange;
 }

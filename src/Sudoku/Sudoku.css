@@ -1,0 +1,11 @@
+/*
+ * Sudoku
+ * 3x3 grid of number tiles
+ */
+
+.ad_board {
+	width: 300px;
+	height: 300px;
+	border: 1px solid;
+	margin-top: 10px;
+}

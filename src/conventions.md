@@ -11,5 +11,7 @@ aribtrary.
 
 They should be listed here in alphabetical to avoid being reused:
 
-aa - Tetris.Component.Board
-ab - Lib.base
+aa - Lib
+ab - App
+ac - Tetris
+ad - Sudoku

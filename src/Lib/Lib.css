@@ -1,7 +1,11 @@
+body {
+	margin: 0;
+}
+
 a {
 	text-decoration: none;
 }
 
-.ab_error {
+.aa_error {
 	color: red;
 }
