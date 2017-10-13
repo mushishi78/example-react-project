@@ -1,4 +1,10 @@
-window.onload = function() {
+window.onload = () => {
+	if (window.location.pathname === "/tests") {
+		const logger = Tatt.tapLogger(Test.tests.length, console.log);
+		Tatt.runTests(Test.tests, logger, () => null);
+		return;
+	}
+
 	ReactDOM.render(
 		<App.Container
 			render={(appStateGet, appStateSet) => (
@@ -8,6 +14,6 @@ window.onload = function() {
 				</div>
 			)}
 		/>,
-		document.getElementById("example-react-project")
+		Lib.rootElement
 	);
 };

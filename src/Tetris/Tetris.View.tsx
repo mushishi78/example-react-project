@@ -19,5 +19,3 @@ namespace Tetris {
 		);
 	}
 }
-
-// ToDo: https://medium.com/@arnaudrinquin/frictionless-unit-testing-in-javascript-with-browser-tap-6ac2cea89a59

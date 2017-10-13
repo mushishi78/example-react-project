@@ -1,0 +1,13 @@
+{
+	"excludedPaths": ["node_modules", "build", "vendor"],
+	"staticFileExtensions": [
+		".css",
+		".js",
+		".map",
+		".png",
+		".ico",
+		".jpg",
+		".ts",
+		".tsx"
+	]
+}

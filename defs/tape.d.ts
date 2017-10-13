@@ -6,6 +6,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 export = tape;
+export as namespace tape;
 
 /**
  * Create a new test with an optional name string and optional opts object.
@@ -13,12 +14,15 @@ export = tape;
  * Tests execute serially.
  */
 declare function tape(name: string, cb: tape.TestCase): void;
-declare function tape(name: string, opts: tape.TestOptions, cb: tape.TestCase): void;
+declare function tape(
+    name: string,
+    opts: tape.TestOptions,
+    cb: tape.TestCase
+): void;
 declare function tape(cb: tape.TestCase): void;
 declare function tape(opts: tape.TestOptions, cb: tape.TestCase): void;
 
 declare namespace tape {
-
     interface TestCase {
         (test: Test): void;
     }
@@ -27,8 +31,8 @@ declare namespace tape {
      * Available opts options for the tape function.
      */
     interface TestOptions {
-        skip?: boolean;		// See tape.skip.
-        timeout?: number;	// Set a timeout for the test, after which it will fail. See tape.timeoutAfter.
+        skip?: boolean; // See tape.skip.
+        timeout?: number; // Set a timeout for the test, after which it will fail. See tape.timeoutAfter.
     }
 
     /**
@@ -183,13 +187,21 @@ declare namespace tape {
          * expected, if present, must be a RegExp or Function, which is used to test the exception object.
          */
         throws(fn: () => void, msg?: string): void;
-        throws(fn: () => void, exceptionExpected: RegExp | (() => void), msg?: string): void;
+        throws(
+            fn: () => void,
+            exceptionExpected: RegExp | (() => void),
+            msg?: string
+        ): void;
 
         /**
          * Assert that the function call fn() does not throw an exception.
          */
         doesNotThrow(fn: () => void, msg?: string): void;
-        doesNotThrow(fn: () => void, exceptionExpected: RegExp | (() => void), msg?: string): void;
+        doesNotThrow(
+            fn: () => void,
+            exceptionExpected: RegExp | (() => void),
+            msg?: string
+        ): void;
 
         /**
          * Print a message without breaking the tap output.

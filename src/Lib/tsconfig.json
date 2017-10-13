@@ -1,14 +1,11 @@
 {
     "compilerOptions": {
-		"declaration": true,
+        "declaration": true,
         "module": "amd",
         "strict": true,
         "outFile": "../../build/Lib.js",
         "sourceMap": true,
         "jsx": "React"
     },
-    "include": [
-        "../../defs/**/*",
-        "../../src/Lib/**/*"
-    ]
+    "include": ["../../defs/**/*", "../../src/Lib/**/*"]
 }
