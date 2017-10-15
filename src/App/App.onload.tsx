@@ -1,5 +1,8 @@
 window.onload = () => {
 	if (window.location.pathname === "/tests") {
+		const tests = m.flattenSuite(Test.tests);
+		// TODO
+
 		const logger = Tatt.tapLogger(Test.tests.length, console.log);
 		Tatt.runTests(Test.tests, logger, () => null);
 		return;

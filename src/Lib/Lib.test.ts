@@ -1,3 +1,3 @@
 namespace Test {
-	export let tests: Tatt.Test[] = [];
+	export let tests: m.Suite = {};
 }

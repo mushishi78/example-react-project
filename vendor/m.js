@@ -14,7 +14,7 @@
         } else {
             g = this;
         }
-        g.Tatt = f();
+        g.m = f();
     }
 })(function() {
     var define, module, exports;
@@ -54,65 +54,136 @@
                 function(require, module, exports) {
                     "use strict";
                     exports.__esModule = true;
-                    function addTest(tests, group, name, testFn) {
-                        tests.push({
-                            group: group,
-                            name: name,
-                            testFn: testFn
-                        });
-                    }
-                    exports.addTest = addTest;
-                    function runTests(tests, onResult, completed) {
-                        function recurse(i) {
-                            if (!tests[i]) {
-                                completed();
-                                return;
+                    function flattenSuite(suite) {
+                        var tests = [];
+                        for (var group in suite) {
+                            for (var name_1 in suite[group]) {
+                                tests.push({
+                                    group: group,
+                                    name: name_1,
+                                    testFn: suite[group][name_1]
+                                });
                             }
-                            runTest(tests[i], function(result) {
-                                onResult(result);
-                                recurse(i + 1);
-                            });
                         }
-                        recurse(0);
+                        return tests;
                     }
-                    exports.runTests = runTests;
-                    exports.timeout = { length: 10000 };
-                    function runTest(test, callback) {
+                    exports.flattenSuite = flattenSuite;
+                },
+                {}
+            ],
+            2: [
+                function(require, module, exports) {
+                    "use strict";
+                    exports.__esModule = true;
+                    var flattenSuite_1 = require("./flattenSuite");
+                    exports.flattenSuite = flattenSuite_1.flattenSuite;
+                    var runTest_1 = require("./runTest");
+                    exports.runTest = runTest_1.runTest;
+                    var runTestsInSerial_1 = require("./runTestsInSerial");
+                    exports.runTestsInSerial =
+                        runTestsInSerial_1.runTestsInSerial;
+                    var tapLogger_1 = require("./tapLogger");
+                    exports.tapLogger = tapLogger_1.tapLogger;
+                },
+                {
+                    "./flattenSuite": 1,
+                    "./runTest": 3,
+                    "./runTestsInSerial": 4,
+                    "./tapLogger": 5
+                }
+            ],
+            3: [
+                function(require, module, exports) {
+                    "use strict";
+                    exports.__esModule = true;
+                    function runTest(_a) {
+                        var test = _a.test,
+                            onResult = _a.onResult,
+                            timeoutMs = _a.timeoutMs;
                         var errors = [];
-                        var completed = false;
-                        function complete() {
-                            if (completed) return;
-                            completed = true;
+                        var timeoutId = setTimeout(
+                            onTimeout,
+                            timeoutMs || 10000
+                        );
+                        var end = doOnce(function() {
                             clearTimeout(timeoutId);
-                            callback({
+                            onResult({
                                 name: test.name,
                                 group: test.group,
                                 errors: errors
                             });
-                        }
-                        var timeoutId = setTimeout(function() {
+                        });
+                        function onTimeout() {
                             errors = errors.concat("timed out");
-                            complete();
-                        }, exports.timeout.length);
+                            end();
+                        }
                         try {
                             test.testFn({
                                 error: function(msg) {
                                     return (errors = errors.concat(msg));
                                 },
-                                end: complete
+                                end: end
                             });
                         } catch (ex) {
                             errors = errors.concat(ex.stack);
-                            complete();
+                            end();
                         }
                     }
                     exports.runTest = runTest;
+                    function doOnce(fn) {
+                        var done = false;
+                        return function() {
+                            if (done) return;
+                            done = true;
+                            fn();
+                        };
+                    }
+                },
+                {}
+            ],
+            4: [
+                function(require, module, exports) {
+                    "use strict";
+                    exports.__esModule = true;
+                    var runTest_1 = require("./runTest");
+                    function runTestsInSerial(_a) {
+                        var tests = _a.tests,
+                            onResult = _a.onResult,
+                            onEnd = _a.onEnd;
+                        var results = [];
+                        function recurse(i) {
+                            if (!tests[i]) {
+                                if (onEnd) onEnd(results);
+                                return;
+                            }
+                            runTest_1.runTest({
+                                test: tests[i],
+                                onResult: function(result) {
+                                    results = results.concat(result);
+                                    if (onResult) onResult(result);
+                                    recurse(i + 1);
+                                }
+                            });
+                        }
+                        recurse(0);
+                    }
+                    exports.runTestsInSerial = runTestsInSerial;
+                },
+                { "./runTest": 3 }
+            ],
+            5: [
+                function(require, module, exports) {
+                    "use strict";
+                    exports.__esModule = true;
                     function tapLogger(plan, printLn) {
-                        printLn("TAP version 13");
-                        printLn("1.." + plan);
                         var i = 0;
                         return function(result) {
                             i++;
+                            // Header
+                            if (i == 1) {
+                                printLn("TAP version 13");
+                                printLn("1.." + plan);
+                            }
                             // ok
                             if (result.errors.length === 0) {
                                 printLn(
@@ -155,6 +226,6 @@
             ]
         },
         {},
-        [1]
-    )(1);
+        [2]
+    )(2);
 });
